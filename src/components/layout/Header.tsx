@@ -30,8 +30,8 @@ export const Header = ({
   return (
     <>
       <nav id="navbar">
-        <a href="#home" className="nav-logo" data-text="<AS />">
-          &lt;AS /&gt;
+        <a href="#home" className="nav-logo" data-text="<AS/>">
+          &lt;AS/&gt;
         </a>
 
         <ul className="nav-links">

@@ -546,6 +546,7 @@
     @media (max-width: 1100px) { .sidebar { display: none; } }
 
     @media (max-width: 768px) {
+      html, body { overflow-x: hidden; }
       nav { padding: 0 24px; }
       .nav-links, .nav-links + .btn-outline { display: none; }
       .hamburger { display: flex; }
@@ -557,7 +558,24 @@
       .photo-wrap { max-width: 240px; margin: 40px auto 0; }
 
       .exp-wrap { flex-direction: column; }
-      .exp-tabs { flex-direction: row; border-left: none; border-bottom: 2px solid var(--bg-lighter); overflow-x: auto; }
+      .exp-tabs {
+        flex-direction: row;
+        border-left: none;
+        border-bottom: 2px solid var(--bg-lighter);
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        white-space: nowrap;
+        scrollbar-width: thin;
+        scrollbar-color: var(--accent) var(--bg-light);
+      }
+      .exp-tabs::-webkit-scrollbar { height: 7px; }
+      .exp-tabs::-webkit-scrollbar-track { background: var(--bg-light); border-radius: 999px; }
+      .exp-tabs::-webkit-scrollbar-thumb {
+        background: linear-gradient(90deg, var(--accent), #00c9a7);
+        border-radius: 999px;
+      }
+      .exp-tabs::-webkit-scrollbar-thumb:hover { background: var(--accent); }
       .exp-tab  { border-left: none; border-bottom: 2px solid transparent; margin-left: 0; margin-bottom: -2px; }
       .exp-tab.active { border-left-color: transparent; border-bottom-color: var(--accent); }
       .exp-panels { padding: 24px 0 0; }

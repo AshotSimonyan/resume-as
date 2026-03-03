@@ -52,28 +52,28 @@ export const Projects = ({ data }: ProjectsProps) => (
       ))}
     </div>
 
-    <h3 className="other-title fade">Other Noteworthy Projects</h3>
-    <div className="proj-table fade">
-      <div className="pt-header">
-        <span>Project</span>
-        <span className="pt-h-built">Built at</span>
-        <span className="pt-h-stack">Stack</span>
-        <span></span>
-      </div>
+    {/*<h3 className="other-title fade">Other Noteworthy Projects</h3>*/}
+    {/*<div className="proj-table fade">*/}
+    {/*  <div className="pt-header">*/}
+    {/*    <span>Project</span>*/}
+    {/*    <span className="pt-h-built">Built at</span>*/}
+    {/*    <span className="pt-h-stack">Stack</span>*/}
+    {/*    <span></span>*/}
+    {/*  </div>*/}
 
-      {data.otherProjects.map((project) => (
-        <a href={project.url} target="_blank" className="pt-row" key={project.name} rel="noreferrer">
-          <span className="pt-name">{project.name}</span>
-          <span className="pt-built">{project.builtAt}</span>
-          <span className="pt-stack">{project.stack}</span>
-          <span className="pt-arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
-          </span>
-        </a>
-      ))}
-    </div>
+    {/*  {data.otherProjects.map((project) => (*/}
+    {/*    <a href={project.url} target="_blank" className="pt-row" key={project.name} rel="noreferrer">*/}
+    {/*      <span className="pt-name">{project.name}</span>*/}
+    {/*      <span className="pt-built">{project.builtAt}</span>*/}
+    {/*      <span className="pt-stack">{project.stack}</span>*/}
+    {/*      <span className="pt-arrow">*/}
+    {/*        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">*/}
+    {/*          <line x1="7" y1="17" x2="17" y2="7" />*/}
+    {/*          <polyline points="7 7 17 7 17 17" />*/}
+    {/*        </svg>*/}
+    {/*      </span>*/}
+    {/*    </a>*/}
+    {/*  ))}*/}
+    {/*</div>*/}
   </section>
 );

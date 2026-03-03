@@ -22,9 +22,6 @@ export const Loader = ({ done }: LoaderProps) => (
             rel="noreferrer"
             style={{
               color: 'inherit',
-              borderBottom: '1px solid rgba(248,192,106,0.45)',
-              paddingBottom: '1px',
-              textDecoration: 'none'
             }}
           >
             Ashot Simonyan
