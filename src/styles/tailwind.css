@@ -620,7 +620,7 @@
       z-index: 0;
     }
     #home { position: relative; overflow: hidden; }
-    #home > *:not(.hero-aurora) { position: relative; z-index: 1; }
+    #home > * { position: relative; z-index: 1; }
 
     /* Nav logo glitch on hover */
     @keyframes gl1 {
@@ -1013,32 +1013,6 @@
     }
 
 
-
-    /* ══════════════════════════════════════════════
-       HERO AURORA BACKGROUND
-    ══════════════════════════════════════════════ */
-    @keyframes aur1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(5%,-4%) scale(1.06)} 66%{transform:translate(-4%,5%) scale(0.96)} }
-    @keyframes aur2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-6%,3%) scale(1.08)} 66%{transform:translate(4%,-3%) scale(1.02)} }
-    @keyframes aur3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(3%,6%) scale(1.05)} }
-    .hero-aurora { position: absolute !important; inset: 0; z-index: 0 !important; pointer-events: none; overflow: hidden; }
-    .hero-aurora::before {
-      content: ''; position: absolute;
-      width: 70%; height: 80%; top: -15%; left: 10%;
-      background: radial-gradient(ellipse, rgba(100,255,218,0.06) 0%, transparent 65%);
-      animation: aur1 10s ease-in-out infinite; filter: blur(50px);
-    }
-    .hero-aurora::after {
-      content: ''; position: absolute;
-      width: 55%; height: 60%; top: 35%; left: 45%;
-      background: radial-gradient(ellipse, rgba(20,90,200,0.05) 0%, transparent 65%);
-      animation: aur2 14s ease-in-out infinite; filter: blur(60px);
-    }
-    .hero-aurora-c {
-      position: absolute; width: 40%; height: 50%; bottom: -10%; left: 5%;
-      background: radial-gradient(ellipse, rgba(100,200,255,0.04) 0%, transparent 65%);
-      animation: aur3 11s ease-in-out infinite; filter: blur(55px);
-      pointer-events: none;
-    }
 
     /* ══════════════════════════════════════════════
        HERO BANNER SPECIAL EFFECTS

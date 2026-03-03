@@ -8,10 +8,6 @@ type HeroProps = {
 
 const HeroComponent = ({ data }: HeroProps) => (
   <section id="home">
-    <div className="hero-aurora">
-      <div className="hero-aurora-c"></div>
-    </div>
-
     <p className="hero-pre fade">Hi, my name is</p>
     <h1 className="hero-name fade" style={{ transitionDelay: '.1s' }}>
       {data.name}.
