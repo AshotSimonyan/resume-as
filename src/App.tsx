@@ -19,6 +19,7 @@ const App = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
+    const LOADER_MIN_VISIBLE_MS = 2400;
     const fadeTimeouts: number[] = [];
     const loaderTimeout = window.setTimeout(() => {
       setLoaderDone(true);
@@ -29,7 +30,7 @@ const App = () => {
         }, index * 110);
         fadeTimeouts.push(timeoutId);
       });
-    }, 1200);
+    }, LOADER_MIN_VISIBLE_MS);
 
     return () => {
       window.clearTimeout(loaderTimeout);
