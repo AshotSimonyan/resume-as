@@ -44,8 +44,8 @@ export const About = ({ data }: AboutProps) => (
             loading="lazy"
             decoding="async"
             fetchPriority="low"
-            width={831}
-            height={960}
+            width={1200}
+            height={1200}
           />
         </div>
       </div>

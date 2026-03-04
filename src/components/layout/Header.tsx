@@ -32,7 +32,7 @@ export const Header = ({
     <>
       <nav id="navbar">
         <a href="#home" className="nav-logo" data-text="<AS/>">
-          &lt;AS/&gt;
+          &lt;AS /&gt;
         </a>
 
         <ul className="nav-links">

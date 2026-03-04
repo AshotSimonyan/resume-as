@@ -344,7 +344,7 @@ export const siteData: SiteData = {
       copiedEmail: 'Email copied!'
     },
     loader: {
-      openTag: '<Portfolio',
+      openTag: '<Intro',
       closeTag: '/>',
       nameLabel: 'name',
       nameValue: 'Ashot Simonyan',
