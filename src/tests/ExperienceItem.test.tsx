@@ -11,9 +11,14 @@ describe('ExperienceItem', () => {
       <ExperienceItem item={item} active={true} index={0} panelId="exp-panel-0" tabId="exp-tab-0" />
     );
 
+    const panel = screen.getByRole('tabpanel');
+
     expect(screen.getByText(new RegExp(item.title, 'i'))).toBeInTheDocument();
     expect(screen.getByText(item.company, { exact: false })).toBeInTheDocument();
-    expect(screen.getByRole('tabpanel')).toHaveTextContent('Developed');
-    expect(screen.getByRole('tabpanel')).toHaveTextContent('AI-driven tools');
+
+    item.bullets.forEach((bullet) => {
+      const plainText = bullet.replace(/<[^>]*>/g, '');
+      expect(panel).toHaveTextContent(plainText);
+    });
   });
 });

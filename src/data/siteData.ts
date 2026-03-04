@@ -3,9 +3,9 @@ import type { SiteData } from '@/types';
 export const siteData: SiteData = {
   name: 'Ashot Simonyan',
   role: 'Senior Front-End Engineer',
-  headline: 'I build things for the web.',
+  headline: 'I build high-performance web platforms.',
   heroDescription:
-    'I\'m a <a href="#experience">Senior Front-End Engineer</a> with <span class="hi">7+ years of experience</span> crafting <span class="hi">scalable, high-performance</span> web applications using <span class="hi">React.js, TypeScript, and Next.js</span>. Currently open to full-time roles at US-based companies - remote or hybrid.',
+    'I\'m a <a href="#experience">Senior Front-End Engineer</a> with <span class="hi">9+ years of experience</span> building large-scale products in <span class="hi">React.js, TypeScript, and Next.js</span>. At Purlin, I helped deliver the Douglas Elliman platform for <span class="hi">1M+ monthly users</span> across <span class="hi">21 languages</span>, with a strong focus on accessibility, SEO, and Core Web Vitals.',
   resumeUrl: '/Resume_Ashot_Simonyan.pdf',
   email: 'ashotsimonyan.tech@gmail.com',
   profileImage: '/ashot.jpg',
@@ -21,11 +21,16 @@ export const siteData: SiteData = {
     { label: 'LinkedIn', href: 'https://linkedin.com/in/ashot-simonyan', icon: 'linkedin' }
   ],
   aboutParagraphs: [
-    'Hello! I\'m Ashot, a Senior Front-End Engineer with <span class="hi">7+ years of experience</span> building scalable, high-performance web applications. I specialise in <span class="hi">React.js, TypeScript, and Next.js</span>.',
-    'I\'ve shipped products across the <a href="#experience">US real estate, NFT/Web3, and SaaS</a> industries - from AI-driven tools at Purlin to a no-code smart contract platform at NFT Stack. I care deeply about <span class="hi">clean architecture, UI performance</span>, and delivering experiences users love.',
-    "I'm currently open to new full-time opportunities at US-based companies. If you're building something great, <a href=\"#contact\">let's talk</a>."
+    'Hello! I\'m Ashot, a Senior Front-End Engineer based in Los Angeles with <span class="hi">9+ years of experience</span> building high-scale web applications and complex UI systems.',
+    'My recent work includes architecting the Douglas Elliman real estate platform at Purlin, delivering <span class="hi">white-label frontend architecture</span>, <span class="hi">internationalization for 21 languages</span>, and significant performance improvements. I also have deep hands-on experience in <a href="#experience">Web3-enabled products</a> and interactive interfaces.',
+    'I\'m authorized to work in the U.S. and open to full-time remote or hybrid roles. If you\'re building a product where performance and frontend quality matter, <a href="#contact">let\'s talk</a>.'
   ],
   skills: [
+    {
+      name: 'JavaScript',
+      logoUrl:
+        'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg'
+    },
     {
       name: 'TypeScript',
       logoUrl:
@@ -42,13 +47,12 @@ export const siteData: SiteData = {
       invert: true
     },
     {
-      name: 'Redux / RTK',
+      name: 'Redux Toolkit',
       logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redux/redux-original.svg'
     },
     {
-      name: 'JavaScript',
-      logoUrl:
-        'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg'
+      name: 'RTK Query',
+      logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redux/redux-original.svg'
     },
     {
       name: 'Gatsby.js',
@@ -56,17 +60,33 @@ export const siteData: SiteData = {
         'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gatsby/gatsby-original.svg'
     },
     {
-      name: 'GraphQL',
-      logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg'
+      name: 'Three.js',
+      logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/threejs/threejs-original.svg',
+      invert: true
     },
     {
       name: 'Sass / SCSS',
       logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sass/sass-original.svg'
     },
     {
+      name: 'CSS Modules',
+      logoUrl:
+        'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original-wordmark.svg'
+    },
+    {
+      name: 'Styled-components',
+      logoUrl:
+        'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/styledcomponents/styledcomponents-original.svg'
+    },
+    {
       name: 'Tailwind CSS',
       logoUrl:
         'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg'
+    },
+    {
+      name: 'Jest',
+      logoUrl:
+        'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jest/jest-plain.svg'
     },
     {
       name: 'Figma',
@@ -90,10 +110,11 @@ export const siteData: SiteData = {
       title: 'Senior Front-End Engineer',
       date: 'Feb 2023 - Present - Remote',
       bullets: [
-        'Developed <span class="hi">AI-driven tools</span> for the US real estate market, enhancing client engagement and user satisfaction through improved functionality and design.',
-        'Optimized front-end architecture to support <span class="hi">performance and scalability</span> improvements across the platform.',
-        'Collaborated with backend teams to integrate seamless front-end solutions and <span class="hi">REST APIs</span>.',
-        'Tech Stack: <span class="hi">TypeScript, React.js, Next.js, RTK Query</span>, CSS Modules.'
+        'Architected and led high-traffic React + Next.js real estate platforms, including Douglas Elliman serving <span class="hi">1M+ monthly users</span>.',
+        'Implemented secure authentication flows with <span class="hi">OpenID Connect (OIDC)</span> and <span class="hi">oidc-client-ts</span>, covering redirects, token lifecycle, and session state.',
+        'Built complex property search and listing experiences with dynamic filtering and large datasets; introduced <span class="hi">white-label theming</span> and i18n support across <span class="hi">21 languages</span>.',
+        'Improved load performance by ~<span class="hi">35%</span> and increased Lighthouse score from ~<span class="hi">72 to 94</span> through bundle optimization, code splitting, and Core Web Vitals work.',
+        'Tech Stack: <span class="hi">TypeScript, React.js, Next.js, RTK Query, OIDC, Cloudinary, REST APIs, CSS Modules</span>.'
       ]
     },
     {
@@ -103,10 +124,11 @@ export const siteData: SiteData = {
       title: 'Lead Front-End Engineer',
       date: 'Mar 2022 - Jan 2023 - Remote',
       bullets: [
-        'Created a <span class="hi">no-code smart contract platform</span> for artists, significantly increasing accessibility in the NFT space.',
-        'Developed engaging landing pages with complex animations and minting capabilities that enhanced user interaction.',
-        '<span class="hi">Led front-end architecture decisions</span> and maintained code quality across the team\'s codebase.',
-        'Tech Stack: TypeScript, React.js, Gatsby.js, Redux, <span class="hi">Web3.js, Ethers.js</span>, Styled-components.'
+        'Led front-end development of a <span class="hi">no-code NFT launch platform</span>, enabling creators to deploy smart contracts without writing code.',
+        'Built wallet-connected minting flows using <span class="hi">Web3.js</span> and <span class="hi">Ethers.js</span> with MetaMask and WalletConnect support.',
+        'Developed interactive launch pages and dashboards using Framer Motion, React Spring, and Three.js to improve drop-day engagement.',
+        'Collaborated with backend and blockchain engineers on minting workflows and transaction handling.',
+        'Tech Stack: TypeScript, React.js, Gatsby.js, Redux, Web3.js, Ethers.js, MetaMask, WalletConnect, Framer Motion, Three.js, Styled-components.'
       ]
     },
     {
@@ -116,10 +138,10 @@ export const siteData: SiteData = {
       title: 'Front-End Engineer',
       date: 'May 2021 - Feb 2022 - Remote',
       bullets: [
-        'Developed a website builder and <span class="hi">reusable component library</span> for React applications, streamlining the development workflow.',
-        'Focused on improving the performance and scalability of user-facing features through best practices.',
-        'Delivered <span class="hi">pixel-perfect</span>, maintainable UI components used across multiple client projects.',
-        'Tech Stack: TypeScript, React.js, Next.js, Styled-components.'
+        'Built a React-based website builder with modular components for creating and managing websites.',
+        'Developed reusable UI libraries that improved delivery speed and consistency across features.',
+        'Implemented responsive components and REST API integrations for dynamic content rendering.',
+        'Tech Stack: TypeScript, React.js, Next.js, Styled-components, REST APIs.'
       ]
     },
     {
@@ -129,9 +151,9 @@ export const siteData: SiteData = {
       title: 'Front-End Engineer',
       date: 'Apr 2017 - Apr 2021 - Armenia',
       bullets: [
-        'Developed responsive front-end applications using React.js and Redux, prioritizing high-quality user experiences.',
-        'Converted <span class="hi">Figma and Adobe XD</span> designs into functional, production-ready code across multiple products.',
-        'Contributed to enhanced usability across applications serving <span class="hi">thousands of daily active users</span>.',
+        'Developed responsive React + Redux applications for multiple client products and user-facing workflows.',
+        'Translated Figma and Adobe XD designs into production-ready UI with cross-browser and responsive behavior.',
+        'Implemented reusable UI components and styling systems with SCSS using modern frontend best practices.',
         'Tech Stack: JavaScript, React.js, Redux, SASS/SCSS, Tailwind CSS.'
       ]
     }
@@ -158,8 +180,8 @@ export const siteData: SiteData = {
       icon: 'build',
       title: 'Build & Integrate',
       description:
-        'I write typed, scalable components in <span class="hi">TypeScript + React</span>, integrate <span class="hi">REST or GraphQL</span> APIs, and keep <span class="hi">bundle size and performance</span> in mind from the very first commit.',
-      tags: ['TypeScript', 'React / Next.js', 'REST / GraphQL', 'RTK Query']
+        'I build typed, scalable UIs in <span class="hi">TypeScript + React</span>, wire robust API layers, and optimize performance early using code splitting, rendering strategy, and Core Web Vitals targets.',
+      tags: ['TypeScript', 'React / Next.js', 'REST APIs', 'RTK Query']
     },
     {
       step: '04 -',
@@ -191,12 +213,19 @@ export const siteData: SiteData = {
       number: '01',
       company: 'Purlin, Co.',
       year: '2023 - Present',
-      title: 'AI Real Estate Platform',
+      title: 'High-Traffic Real Estate Platform',
       description:
-        '<span class="hi">AI-driven</span> web platform for the US real estate market. Features intelligent property search, dynamic listing UIs, and client engagement tools - optimised for <span class="hi">performance and scalability</span> with a modern Next.js + RTK Query architecture.',
-      technologies: ['TypeScript', 'React.js', 'Next.js', 'RTK Query', 'CSS Modules'],
-      githubUrl: 'https://github.com/',
-      liveUrl: 'https://purlin.com'
+        'Worked on the Douglas Elliman web platform while at Purlin; contributions included frontend architecture, performance.',
+      technologies: [
+        'TypeScript',
+        'React.js',
+        'Next.js',
+        'RTK Query',
+        'OIDC',
+        'Cloudinary',
+        'CSS Modules'
+      ],
+      liveUrl: 'https://www.elliman.com/'
     },
     {
       number: '02',
@@ -204,7 +233,7 @@ export const siteData: SiteData = {
       year: '2021 - 2023',
       title: 'No-Code NFT Smart Contract Platform',
       description:
-        'A <span class="hi">no-code platform</span> empowering artists to deploy and manage <span class="hi">smart contracts</span> without writing a single line of Solidity. Includes animated minting pages, wallet integration via Web3.js & Ethers.js, and a Gatsby-powered marketing site with smooth scroll animations.',
+        'A <span class="hi">no-code platform</span> for creators to launch NFT collections, including wallet-connected minting flows, drop dashboards, and smart-contract transaction UX. Built with strong focus on interaction quality and secure Web3 wallet support.',
       technologies: [
         'TypeScript',
         'React.js',
@@ -212,46 +241,48 @@ export const siteData: SiteData = {
         'Redux',
         'Web3.js',
         'Ethers.js',
+        'WalletConnect',
+        'Framer Motion',
+        'Three.js',
         'Styled-components'
-      ],
-      githubUrl: 'https://github.com/'
+      ]
     }
   ],
   otherProjects: [
     {
-      name: 'React Website Builder',
-      builtAt: 'Ultra Labs',
-      stack: 'TypeScript · React.js · Next.js',
+      name: 'White-Label Theming System',
+      builtAt: 'Purlin',
+      stack: 'Next.js · CSS Modules · Design Tokens',
       url: 'https://github.com/'
     },
     {
-      name: 'NFT Minting Pages',
+      name: '21-Language i18n Rollout',
+      builtAt: 'Purlin',
+      stack: 'React.js · Next.js · i18n',
+      url: 'https://github.com/'
+    },
+    {
+      name: 'OIDC Authentication Layer',
+      builtAt: 'Purlin',
+      stack: 'oidc-client-ts · React.js · Next.js',
+      url: 'https://github.com/'
+    },
+    {
+      name: 'NFT Mint Dashboard',
       builtAt: 'NFT Stack',
-      stack: 'Gatsby.js · Web3.js · Ethers.js',
+      stack: 'Web3.js · Ethers.js · WalletConnect',
       url: 'https://github.com/'
     },
     {
-      name: 'Redux Toolkit Boilerplate',
-      builtAt: 'Personal',
-      stack: 'React.js · TypeScript · RTK Query',
+      name: 'Modular Website Builder',
+      builtAt: 'Ultra Labs',
+      stack: 'TypeScript · React.js · Styled-components',
       url: 'https://github.com/'
     },
     {
-      name: 'UI Component Library',
-      builtAt: 'Personal',
-      stack: 'React.js · TypeScript · Stitches · Storybook',
-      url: 'https://github.com/'
-    },
-    {
-      name: 'Responsive SaaS Dashboard',
+      name: 'Reusable UI System',
       builtAt: 'STDev',
-      stack: 'React.js · Tailwind CSS · Redux',
-      url: 'https://github.com/'
-    },
-    {
-      name: 'Figma -> Code Workflow',
-      builtAt: 'Personal',
-      stack: 'Figma · CSS Modules · SCSS',
+      stack: 'React.js · Redux · SCSS',
       url: 'https://github.com/'
     }
   ],
@@ -303,7 +334,7 @@ export const siteData: SiteData = {
       eyebrow: "05. What's Next?",
       title: 'Get In Touch',
       description:
-        "I'm actively looking for new opportunities at US-based companies (remote-friendly). Whether you have a role in mind or just want to say hello - I'd love to hear from you.",
+        "I'm actively looking for senior frontend roles at US-based teams (remote or hybrid). I'm authorized to work in the U.S., and I'm happy to discuss opportunities focused on performance, platform scale, and product quality.",
       ctaLabel: 'Say Hello'
     },
     footer: {
@@ -321,7 +352,7 @@ export const siteData: SiteData = {
       roleLabel: 'role',
       roleValue: 'Sr. Front-End Eng.',
       stackLabel: 'stack',
-      stackValue: "['React','TS','Next.js']",
+      stackValue: "['React','TS','Next.js','RTK Query']",
       statusLabel: 'status',
       statusValue: 'open-to-work'
     }
