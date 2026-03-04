@@ -7,7 +7,14 @@ type ContactProps = {
 const cardIcon = (icon: ContactCard['icon']) => {
   if (icon === 'email') {
     return (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
         <polyline points="22,6 12,13 2,6" />
       </svg>
@@ -16,7 +23,14 @@ const cardIcon = (icon: ContactCard['icon']) => {
 
   if (icon === 'phone') {
     return (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
       </svg>
     );
@@ -31,14 +45,11 @@ const cardIcon = (icon: ContactCard['icon']) => {
 
 export const Contact = ({ data }: ContactProps) => (
   <section id="contact">
-    <p className="contact-pre fade">05. What's Next?</p>
-    <h2 className="contact-title fade">Get In Touch</h2>
-    <p className="contact-text fade">
-      I'm actively looking for new opportunities at US-based companies (remote-friendly). Whether you have a role in
-      mind or just want to say hello - I'd love to hear from you.
-    </p>
-    <a href={`mailto:${data.email}`} className="btn-outline fade">
-      Say Hello
+    <p className="contact-pre fade">{data.copy.contact.eyebrow}</p>
+    <h2 className="contact-title fade">{data.copy.contact.title}</h2>
+    <p className="contact-text fade">{data.copy.contact.description}</p>
+    <a href={`mailto:${data.email}`} className="btn-outline fade" id="say-hello-button">
+      {data.copy.contact.ctaLabel}
     </a>
 
     <div className="contact-cards fade">

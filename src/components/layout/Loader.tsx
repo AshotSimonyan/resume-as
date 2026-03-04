@@ -1,54 +1,50 @@
 import type { CSSProperties } from 'react';
 
+import type { LoaderCopy } from '@/types';
+
 type LoaderProps = {
   done: boolean;
+  copy: LoaderCopy;
 };
 
-export const Loader = ({ done }: LoaderProps) => (
+export const Loader = ({ done, copy }: LoaderProps) => (
   <div id="loader" className={done ? 'done' : ''}>
     <div className="l-box">
       <div className="l-line" style={{ '--d': '0.1s' } as CSSProperties}>
-        <span className="t-tag">&lt;Portfolio</span>
+        <span className="t-tag">{copy.openTag}</span>
       </div>
       <div className="l-line" style={{ '--d': '0.45s' } as CSSProperties}>
         {'  '}
-        <span className="t-attr">name</span>
+        <span className="t-attr">{copy.nameLabel}</span>
         <span className="t-eq">=</span>
         <span className="t-str">
           "
-          <a
-            href="https://linkedin.com/in/ashot-simonyan"
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              color: 'inherit',
-            }}
-          >
-            Ashot Simonyan
+          <a href={copy.nameUrl} target="_blank" rel="noreferrer" className="loader-link">
+            {copy.nameValue}
           </a>
           "
         </span>
       </div>
       <div className="l-line" style={{ '--d': '0.8s' } as CSSProperties}>
         {'  '}
-        <span className="t-attr">role</span>
+        <span className="t-attr">{copy.roleLabel}</span>
         <span className="t-eq">=</span>
-        <span className="t-str">"Sr. Front-End Eng."</span>
+        <span className="t-str">"{copy.roleValue}"</span>
       </div>
       <div className="l-line" style={{ '--d': '1.15s' } as CSSProperties}>
         {'  '}
-        <span className="t-attr">stack</span>
+        <span className="t-attr">{copy.stackLabel}</span>
         <span className="t-eq">=</span>
-        <span className="t-str">['React','TS','Next.js']</span>
+        <span className="t-str">{copy.stackValue}</span>
       </div>
       <div className="l-line" style={{ '--d': '1.5s' } as CSSProperties}>
         {'  '}
-        <span className="t-attr">status</span>
+        <span className="t-attr">{copy.statusLabel}</span>
         <span className="t-eq">=</span>
-        <span className="t-str">"open-to-work"</span>
+        <span className="t-str">"{copy.statusValue}"</span>
       </div>
       <div className="l-line" style={{ '--d': '1.85s' } as CSSProperties}>
-        <span className="t-tag">/&gt;</span>
+        <span className="t-tag">{copy.closeTag}</span>
         <span className="l-cursor"></span>
       </div>
     </div>

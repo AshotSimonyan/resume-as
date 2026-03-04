@@ -6,7 +6,7 @@ export interface NavLink {
 export interface SocialLink {
   label: string;
   href: string;
-  icon: 'github' | 'linkedin' | 'twitter' | 'codepen';
+  icon: 'github' | 'linkedin';
 }
 
 export interface Skill {
@@ -58,6 +58,51 @@ export interface ContactCard {
   external?: boolean;
 }
 
+export interface SectionCopy {
+  number: string;
+  title: string;
+}
+
+export interface LoaderCopy {
+  openTag: string;
+  closeTag: string;
+  nameLabel: string;
+  nameValue: string;
+  nameUrl: string;
+  roleLabel: string;
+  roleValue: string;
+  stackLabel: string;
+  stackValue: string;
+  statusLabel: string;
+  statusValue: string;
+}
+
+export interface SiteCopy {
+  heroIntro: string;
+  heroCtaLabel: string;
+  heroCtaHref: string;
+  skillsLabel: string;
+  about: SectionCopy;
+  experience: SectionCopy;
+  process: SectionCopy & {
+    subtitle: string;
+  };
+  projects: SectionCopy;
+  contact: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    ctaLabel: string;
+  };
+  footer: {
+    creditPrefix: string;
+  };
+  toasts: {
+    copiedEmail: string;
+  };
+  loader: LoaderCopy;
+}
+
 export interface SiteData {
   name: string;
   role: string;
@@ -75,4 +120,5 @@ export interface SiteData {
   featuredProjects: FeaturedProject[];
   otherProjects: OtherProject[];
   contactCards: ContactCard[];
+  copy: SiteCopy;
 }

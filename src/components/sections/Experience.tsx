@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { ExperienceItem } from '@/components/sections/ExperienceItem';
 import type { SiteData } from '@/types';
@@ -9,48 +9,48 @@ type ExperienceProps = {
 
 export const Experience = ({ data }: ExperienceProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [indicatorTop, setIndicatorTop] = useState(0);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const indicatorRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  const updateIndicator = useCallback(() => {
     const activeTab = tabRefs.current[activeIndex];
-    if (!activeTab) {
+    if (!activeTab || !indicatorRef.current) {
       return;
     }
 
-    setIndicatorTop(activeTab.offsetTop);
+    indicatorRef.current.style.top = `${activeTab.offsetTop}px`;
   }, [activeIndex]);
 
   useEffect(() => {
-    const onResize = () => {
-      const activeTab = tabRefs.current[activeIndex];
-      if (activeTab) {
-        setIndicatorTop(activeTab.offsetTop);
-      }
-    };
+    updateIndicator();
+  }, [updateIndicator]);
 
-    window.addEventListener('resize', onResize);
+  useEffect(() => {
+    window.addEventListener('resize', updateIndicator);
 
     return () => {
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener('resize', updateIndicator);
     };
-  }, [activeIndex]);
+  }, [updateIndicator]);
 
   return (
     <section id="experience">
-      <h2 className="section-heading fade" data-n="02. ">
-        Where I've Worked
+      <h2 className="section-heading fade" data-n={data.copy.experience.number}>
+        {data.copy.experience.title}
       </h2>
 
       <div className="exp-wrap fade">
         <ul className="exp-tabs" role="tablist">
-          <div className="exp-indicator" style={{ top: `${indicatorTop}px` }}></div>
+          <div className="exp-indicator" ref={indicatorRef}></div>
           {data.experiences.map((experience, index) => (
             <li key={experience.company}>
               <button
                 className={`exp-tab ${activeIndex === index ? 'active' : ''}`}
                 data-t={index}
                 role="tab"
+                id={`exp-tab-${index}`}
+                aria-selected={activeIndex === index}
+                aria-controls={`exp-panel-${index}`}
                 onClick={() => setActiveIndex(index)}
                 ref={(node) => {
                   tabRefs.current[index] = node;
@@ -64,7 +64,14 @@ export const Experience = ({ data }: ExperienceProps) => {
 
         <div className="exp-panels">
           {data.experiences.map((experience, index) => (
-            <ExperienceItem key={experience.company} item={experience} active={activeIndex === index} index={index} />
+            <ExperienceItem
+              key={experience.company}
+              item={experience}
+              active={activeIndex === index}
+              index={index}
+              panelId={`exp-panel-${index}`}
+              tabId={`exp-tab-${index}`}
+            />
           ))}
         </div>
       </div>

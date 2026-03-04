@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
@@ -42,9 +42,11 @@ const App = () => {
     };
   }, []);
 
-  useSiteEffects({ setActiveSection });
-
-  const navLinks = useMemo(() => siteData.navLinks, []);
+  useSiteEffects({
+    setActiveSection,
+    email: siteData.email,
+    copiedEmailText: siteData.copy.toasts.copiedEmail
+  });
 
   return (
     <>
@@ -52,11 +54,11 @@ const App = () => {
       <canvas id="hero-canvas"></canvas>
       <div className="cursor-spotlight" id="cursor-spotlight"></div>
 
-      <Loader done={loaderDone} />
+      <Loader done={loaderDone} copy={siteData.copy.loader} />
 
       <div className="site-shell">
         <Header
-          navLinks={navLinks}
+          navLinks={siteData.navLinks}
           resumeUrl={siteData.resumeUrl}
           activeSection={activeSection}
           mobileOpen={mobileOpen}
@@ -75,7 +77,11 @@ const App = () => {
           <Contact data={siteData} />
         </main>
 
-        <Footer socialLinks={siteData.socialLinks} />
+        <Footer
+          socialLinks={siteData.socialLinks}
+          siteName={siteData.name}
+          creditPrefix={siteData.copy.footer.creditPrefix}
+        />
       </div>
     </>
   );

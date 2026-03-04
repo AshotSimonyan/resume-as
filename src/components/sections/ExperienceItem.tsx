@@ -4,10 +4,12 @@ type ExperienceItemProps = {
   item: ExperienceType;
   active: boolean;
   index: number;
+  panelId: string;
+  tabId: string;
 };
 
-export const ExperienceItem = ({ item, active, index }: ExperienceItemProps) => (
-  <div className={`exp-panel ${active ? 'active' : ''}`} data-p={index} role="tabpanel">
+export const ExperienceItem = ({ item, active, index, panelId, tabId }: ExperienceItemProps) => (
+  <div className={`exp-panel ${active ? 'active' : ''}`} data-p={index} id={panelId} role="tabpanel" aria-labelledby={tabId}>
     <h3 className="exp-role">
       {item.title}{' '}
       <span>

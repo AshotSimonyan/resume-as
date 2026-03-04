@@ -2,9 +2,15 @@ import { useEffect } from 'react';
 
 type UseSiteEffectsProps = {
   setActiveSection: (sectionId: string) => void;
+  email: string;
+  copiedEmailText: string;
 };
 
-export const useSiteEffects = ({ setActiveSection }: UseSiteEffectsProps): void => {
+export const useSiteEffects = ({
+  setActiveSection,
+  email,
+  copiedEmailText
+}: UseSiteEffectsProps): void => {
   useEffect(() => {
     const navbar = document.getElementById('navbar');
     let prevY = 0;
@@ -236,9 +242,7 @@ export const useSiteEffects = ({ setActiveSection }: UseSiteEffectsProps): void 
   }, []);
 
   useEffect(() => {
-    const emailLinks = document.querySelectorAll<HTMLAnchorElement>(
-      '.sidebar-right a[href="mailto:ashotsimonyan.tech@gmail.com"]'
-    );
+    const emailLinks = document.querySelectorAll<HTMLAnchorElement>('.sidebar-email-link');
 
     const onEmailClick = (event: MouseEvent) => {
       if (event.ctrlKey || event.metaKey) {
@@ -247,9 +251,9 @@ export const useSiteEffects = ({ setActiveSection }: UseSiteEffectsProps): void 
 
       event.preventDefault();
 
-      navigator.clipboard?.writeText('ashotsimonyan.tech@gmail.com').then(() => {
+      navigator.clipboard?.writeText(email).then(() => {
         const toast = document.createElement('div');
-        toast.textContent = 'Email copied!';
+        toast.textContent = copiedEmailText;
         toast.style.cssText = `position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
           background:var(--bg-light);color:var(--accent);border:1px solid var(--accent);
           font-family:var(--mono);font-size:13px;padding:10px 20px;border-radius:4px;
@@ -274,7 +278,7 @@ export const useSiteEffects = ({ setActiveSection }: UseSiteEffectsProps): void 
       link.addEventListener('click', onEmailClick);
     });
 
-    const sayHello = document.querySelector('#contact .btn-outline') as HTMLElement | null;
+    const sayHello = document.querySelector('#say-hello-button') as HTMLElement | null;
 
     const onSayHelloClick = () => {
       if (!sayHello) {
@@ -289,8 +293,9 @@ export const useSiteEffects = ({ setActiveSection }: UseSiteEffectsProps): void 
 
         dot.style.cssText = `position:fixed;width:4px;height:4px;border-radius:50%;
           background:var(--accent);pointer-events:none;z-index:9999;
-          left:${rect.left + rect.width / 2}px;top:${rect.top + rect.height / 2}px;
           transition:transform 0.5s ease,opacity 0.5s ease;`;
+        dot.style.left = `${rect.left + rect.width / 2}px`;
+        dot.style.top = `${rect.top + rect.height / 2}px`;
 
         document.body.appendChild(dot);
 
@@ -314,5 +319,5 @@ export const useSiteEffects = ({ setActiveSection }: UseSiteEffectsProps): void 
 
       sayHello?.removeEventListener('click', onSayHelloClick);
     };
-  }, []);
+  }, [copiedEmailText, email]);
 };

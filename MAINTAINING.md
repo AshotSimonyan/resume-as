@@ -3,7 +3,8 @@
 ## Change copy/content
 
 - Edit `src/data/siteData.ts`.
-- Main keys used by UI: `name`, `role`, `headline`, `resumeUrl`, `email`, `navLinks`, `socialLinks`, `skills`, `experiences`, `processSteps`, `featuredProjects`, `otherProjects`.
+- Main keys used by UI: `name`, `role`, `headline`, `resumeUrl`, `email`, `navLinks`, `socialLinks`, `skills`, `experiences`, `processSteps`, `featuredProjects`, `otherProjects`, `copy`.
+- Section labels/headings/button text/toast text are under `siteData.copy`.
 
 ## Update experience tabs
 

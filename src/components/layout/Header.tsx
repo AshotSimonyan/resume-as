@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+import { classNames } from '@/helpers/classNames';
 import type { NavLink } from '@/types';
 
 type HeaderProps = {
@@ -37,7 +38,11 @@ export const Header = ({
         <ul className="nav-links">
           {navLinks.map((link) => (
             <li key={link.id}>
-              <a href={`#${link.id}`} style={{ color: activeSection === link.id ? 'var(--accent)' : undefined }}>
+              <a
+                href={`#${link.id}`}
+                className={classNames(activeSection === link.id && 'active')}
+                aria-current={activeSection === link.id ? 'page' : undefined}
+              >
                 {link.label}
               </a>
             </li>
@@ -55,7 +60,11 @@ export const Header = ({
         </button>
       </nav>
 
-      <div className={`overlay ${mobileOpen ? 'open' : ''}`} id="overlay" onClick={onCloseMobile}></div>
+      <div
+        className={`overlay ${mobileOpen ? 'open' : ''}`}
+        id="overlay"
+        onClick={onCloseMobile}
+      ></div>
 
       <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`} id="mobileMenu">
         <ul className="mobile-menu-links">
@@ -70,8 +79,7 @@ export const Header = ({
 
         <a
           href={resumeUrl}
-          className="btn-outline"
-          style={{ margin: '20px 0 0' }}
+          className="btn-outline mobile-resume-link"
           target="_blank"
           rel="noreferrer"
           onClick={onCloseMobile}

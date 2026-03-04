@@ -5,7 +5,7 @@ export const siteData: SiteData = {
   role: 'Senior Front-End Engineer',
   headline: 'I build things for the web.',
   heroDescription:
-    "I'm a <a href=\"#experience\">Senior Front-End Engineer</a> with <span class=\"hi\">7+ years of experience</span> crafting <span class=\"hi\">scalable, high-performance</span> web applications using <span class=\"hi\">React.js, TypeScript, and Next.js</span>. Currently open to full-time roles at US-based companies - remote or hybrid.",
+    'I\'m a <a href="#experience">Senior Front-End Engineer</a> with <span class="hi">7+ years of experience</span> crafting <span class="hi">scalable, high-performance</span> web applications using <span class="hi">React.js, TypeScript, and Next.js</span>. Currently open to full-time roles at US-based companies - remote or hybrid.',
   resumeUrl: '/Resume_Ashot_Simonyan.pdf',
   email: 'ashotsimonyan.tech@gmail.com',
   profileImage: '/ashot.jpg',
@@ -21,8 +21,8 @@ export const siteData: SiteData = {
     { label: 'LinkedIn', href: 'https://linkedin.com/in/ashot-simonyan', icon: 'linkedin' }
   ],
   aboutParagraphs: [
-    "Hello! I'm Ashot, a Senior Front-End Engineer with <span class=\"hi\">7+ years of experience</span> building scalable, high-performance web applications. I specialise in <span class=\"hi\">React.js, TypeScript, and Next.js</span>.",
-    "I've shipped products across the <a href=\"#experience\">US real estate, NFT/Web3, and SaaS</a> industries - from AI-driven tools at Purlin to a no-code smart contract platform at NFT Stack. I care deeply about <span class=\"hi\">clean architecture, UI performance</span>, and delivering experiences users love.",
+    'Hello! I\'m Ashot, a Senior Front-End Engineer with <span class="hi">7+ years of experience</span> building scalable, high-performance web applications. I specialise in <span class="hi">React.js, TypeScript, and Next.js</span>.',
+    'I\'ve shipped products across the <a href="#experience">US real estate, NFT/Web3, and SaaS</a> industries - from AI-driven tools at Purlin to a no-code smart contract platform at NFT Stack. I care deeply about <span class="hi">clean architecture, UI performance</span>, and delivering experiences users love.',
     "I'm currently open to new full-time opportunities at US-based companies. If you're building something great, <a href=\"#contact\">let's talk</a>."
   ],
   skills: [
@@ -37,7 +37,8 @@ export const siteData: SiteData = {
     },
     {
       name: 'Next.js',
-      logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg',
+      logoUrl:
+        'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg',
       invert: true
     },
     {
@@ -51,7 +52,8 @@ export const siteData: SiteData = {
     },
     {
       name: 'Gatsby.js',
-      logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gatsby/gatsby-original.svg'
+      logoUrl:
+        'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/gatsby/gatsby-original.svg'
     },
     {
       name: 'GraphQL',
@@ -72,9 +74,13 @@ export const siteData: SiteData = {
     },
     {
       name: 'Node.js',
-      logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg'
+      logoUrl:
+        'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg'
     },
-    { name: 'Git', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg' }
+    {
+      name: 'Git',
+      logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg'
+    }
   ],
   experiences: [
     {
@@ -160,7 +166,7 @@ export const siteData: SiteData = {
       icon: 'mentor',
       title: 'Review & Mentor',
       description:
-        'I treat code reviews as a teaching moment, not a gate. I give actionable feedback, pair with junior devs when they\'re stuck, and help the whole team level up - not just ship tickets.',
+        "I treat code reviews as a teaching moment, not a gate. I give actionable feedback, pair with junior devs when they're stuck, and help the whole team level up - not just ship tickets.",
       tags: ['Code review', 'Mentoring', 'Pair programming', 'Best practices']
     },
     {
@@ -199,7 +205,15 @@ export const siteData: SiteData = {
       title: 'No-Code NFT Smart Contract Platform',
       description:
         'A <span class="hi">no-code platform</span> empowering artists to deploy and manage <span class="hi">smart contracts</span> without writing a single line of Solidity. Includes animated minting pages, wallet integration via Web3.js & Ethers.js, and a Gatsby-powered marketing site with smooth scroll animations.',
-      technologies: ['TypeScript', 'React.js', 'Gatsby.js', 'Redux', 'Web3.js', 'Ethers.js', 'Styled-components'],
+      technologies: [
+        'TypeScript',
+        'React.js',
+        'Gatsby.js',
+        'Redux',
+        'Web3.js',
+        'Ethers.js',
+        'Styled-components'
+      ],
       githubUrl: 'https://github.com/'
     }
   ],
@@ -261,5 +275,55 @@ export const siteData: SiteData = {
       icon: 'linkedin',
       external: true
     }
-  ]
+  ],
+  copy: {
+    heroIntro: 'Hi, my name is',
+    heroCtaLabel: 'Check out my work',
+    heroCtaHref: '#projects',
+    skillsLabel: '// tech stack',
+    about: {
+      number: '01. ',
+      title: 'About Me'
+    },
+    experience: {
+      number: '02. ',
+      title: "Where I've Worked"
+    },
+    process: {
+      number: '03. ',
+      title: 'How I Work',
+      subtitle:
+        "A transparent, collaborative process - from first kickoff to final ship. Here's what working with me actually looks like."
+    },
+    projects: {
+      number: '04. ',
+      title: "Some Things I've Built"
+    },
+    contact: {
+      eyebrow: "05. What's Next?",
+      title: 'Get In Touch',
+      description:
+        "I'm actively looking for new opportunities at US-based companies (remote-friendly). Whether you have a role in mind or just want to say hello - I'd love to hear from you.",
+      ctaLabel: 'Say Hello'
+    },
+    footer: {
+      creditPrefix: 'Designed & Built by'
+    },
+    toasts: {
+      copiedEmail: 'Email copied!'
+    },
+    loader: {
+      openTag: '<Portfolio',
+      closeTag: '/>',
+      nameLabel: 'name',
+      nameValue: 'Ashot Simonyan',
+      nameUrl: 'https://linkedin.com/in/ashot-simonyan',
+      roleLabel: 'role',
+      roleValue: 'Sr. Front-End Eng.',
+      stackLabel: 'stack',
+      stackValue: "['React','TS','Next.js']",
+      statusLabel: 'status',
+      statusValue: 'open-to-work'
+    }
+  }
 };
