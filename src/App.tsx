@@ -19,26 +19,23 @@ const App = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onLoad = () => {
-      window.setTimeout(() => {
-        setLoaderDone(true);
+    const fadeTimeouts: number[] = [];
+    const loaderTimeout = window.setTimeout(() => {
+      setLoaderDone(true);
 
-        document.querySelectorAll('#home .fade').forEach((element, index) => {
-          window.setTimeout(() => {
-            element.classList.add('in');
-          }, index * 110);
-        });
-      }, 2400);
-    };
-
-    if (document.readyState === 'complete') {
-      onLoad();
-    } else {
-      window.addEventListener('load', onLoad);
-    }
+      document.querySelectorAll('#home .fade').forEach((element, index) => {
+        const timeoutId = window.setTimeout(() => {
+          element.classList.add('in');
+        }, index * 110);
+        fadeTimeouts.push(timeoutId);
+      });
+    }, 1200);
 
     return () => {
-      window.removeEventListener('load', onLoad);
+      window.clearTimeout(loaderTimeout);
+      fadeTimeouts.forEach((timeoutId) => {
+        window.clearTimeout(timeoutId);
+      });
     };
   }, []);
 

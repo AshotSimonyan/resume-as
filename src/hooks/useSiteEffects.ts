@@ -6,6 +6,29 @@ type UseSiteEffectsProps = {
   copiedEmailText: string;
 };
 
+const scheduleIdle = (callback: () => void, timeout = 900): (() => void) => {
+  const win = window as Window & {
+    requestIdleCallback?: (cb: () => void, options?: { timeout: number }) => number;
+    cancelIdleCallback?: (id: number) => void;
+  };
+
+  if (typeof win.requestIdleCallback === 'function') {
+    const idleId = win.requestIdleCallback(() => {
+      callback();
+    }, { timeout });
+
+    return () => {
+      win.cancelIdleCallback?.(idleId);
+    };
+  }
+
+  const timeoutId = window.setTimeout(callback, Math.min(timeout, 300));
+
+  return () => {
+    window.clearTimeout(timeoutId);
+  };
+};
+
 export const useSiteEffects = ({
   setActiveSection,
   email,
@@ -13,23 +36,50 @@ export const useSiteEffects = ({
 }: UseSiteEffectsProps): void => {
   useEffect(() => {
     const navbar = document.getElementById('navbar');
-    let prevY = 0;
+    if (!navbar) {
+      return;
+    }
+
+    let prevY = window.scrollY;
+    let hidden = false;
+    let scrolled = prevY > 50;
+    let rafId = 0;
+    let ticking = false;
+
+    const updateNavbar = () => {
+      const y = window.scrollY;
+      const nextHidden = y > prevY && y > 100;
+      const nextScrolled = y > 50;
+
+      if (nextHidden !== hidden) {
+        navbar.classList.toggle('nav-hidden', nextHidden);
+        hidden = nextHidden;
+      }
+
+      if (nextScrolled !== scrolled) {
+        navbar.classList.toggle('nav-scrolled', nextScrolled);
+        scrolled = nextScrolled;
+      }
+
+      prevY = y;
+      ticking = false;
+    };
 
     const onScrollNav = () => {
-      if (!navbar) {
+      if (ticking) {
         return;
       }
 
-      const y = window.scrollY;
-      navbar.style.transform = y > prevY && y > 100 ? 'translateY(-100%)' : 'translateY(0)';
-      navbar.style.boxShadow = y > 50 ? '0 10px 30px -10px rgba(2,12,27,.7)' : 'none';
-      prevY = y;
+      ticking = true;
+      rafId = window.requestAnimationFrame(updateNavbar);
     };
 
+    updateNavbar();
     window.addEventListener('scroll', onScrollNav, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', onScrollNav);
+      window.cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -80,22 +130,35 @@ export const useSiteEffects = ({
 
   useEffect(() => {
     const bar = document.getElementById('scroll-bar');
+    if (!bar) {
+      return;
+    }
+
+    let rafId = 0;
+    let ticking = false;
+
+    const updateProgress = () => {
+      const height = document.body.scrollHeight - window.innerHeight;
+      const pct = height > 0 ? window.scrollY / height : 0;
+      bar.style.transform = `scaleX(${Math.min(Math.max(pct, 0), 1)})`;
+      ticking = false;
+    };
 
     const onScrollProgress = () => {
-      if (!bar) {
+      if (ticking) {
         return;
       }
 
-      const height = document.body.scrollHeight - window.innerHeight;
-      const pct = height > 0 ? (window.scrollY / height) * 100 : 0;
-      bar.style.width = `${Math.min(pct, 100)}%`;
+      ticking = true;
+      rafId = window.requestAnimationFrame(updateProgress);
     };
 
-    onScrollProgress();
+    updateProgress();
     window.addEventListener('scroll', onScrollProgress, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', onScrollProgress);
+      window.cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -105,9 +168,19 @@ export const useSiteEffects = ({
       return;
     }
 
+    if (
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      window.matchMedia('(pointer: coarse)').matches
+    ) {
+      spotlight.style.opacity = '0';
+      return;
+    }
+
     let x = window.innerWidth / 2;
     let y = window.innerHeight / 2;
     let rafId = 0;
+    const halfWidth = spotlight.clientWidth / 2;
+    const halfHeight = spotlight.clientHeight / 2;
 
     const onMouseMove = (event: MouseEvent) => {
       x = event.clientX;
@@ -118,15 +191,17 @@ export const useSiteEffects = ({
       }
 
       rafId = window.requestAnimationFrame(() => {
-        spotlight.style.left = `${x}px`;
-        spotlight.style.top = `${y}px`;
+        spotlight.style.transform = `translate3d(${x - halfWidth}px, ${y - halfHeight}px, 0)`;
         rafId = 0;
       });
     };
 
-    document.addEventListener('mousemove', onMouseMove, { passive: true });
+    const cancelIdle = scheduleIdle(() => {
+      document.addEventListener('mousemove', onMouseMove, { passive: true });
+    }, 700);
 
     return () => {
+      cancelIdle();
       document.removeEventListener('mousemove', onMouseMove);
       if (rafId) {
         window.cancelAnimationFrame(rafId);
@@ -135,75 +210,128 @@ export const useSiteEffects = ({
   }, []);
 
   useEffect(() => {
-    const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
-    if (!canvas) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
 
-    const context = canvas.getContext('2d');
-    if (!context) {
-      return;
-    }
+    const nav = navigator as Navigator & { deviceMemory?: number };
+    const isLowPowerDevice = nav.hardwareConcurrency <= 4 || (nav.deviceMemory ?? 8) <= 4;
+    let cleanup: (() => void) | undefined;
 
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    resize();
-    window.addEventListener('resize', resize, { passive: true });
-
-    const dots = Array.from({ length: 55 }, () => ({
-      x: Math.random(),
-      y: Math.random(),
-      vx: (Math.random() - 0.5) * 0.00022,
-      vy: (Math.random() - 0.5) * 0.00022,
-      r: Math.random() * 1.3 + 0.4,
-      a: Math.random() * 0.28 + 0.07
-    }));
-
-    let frameId = 0;
-
-    const draw = () => {
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      const width = canvas.width;
-      const height = canvas.height;
-
-      dots.forEach((dot) => {
-        dot.x = (dot.x + dot.vx + 1) % 1;
-        dot.y = (dot.y + dot.vy + 1) % 1;
-
-        context.beginPath();
-        context.arc(dot.x * width, dot.y * height, dot.r, 0, Math.PI * 2);
-        context.fillStyle = `rgba(100,255,218,${dot.a})`;
-        context.fill();
-      });
-
-      for (let i = 0; i < dots.length; i += 1) {
-        for (let j = i + 1; j < dots.length; j += 1) {
-          const dx = (dots[i].x - dots[j].x) * width;
-          const dy = (dots[i].y - dots[j].y) * height;
-          const d2 = dx * dx + dy * dy;
-
-          if (d2 < 12000) {
-            context.beginPath();
-            context.moveTo(dots[i].x * width, dots[i].y * height);
-            context.lineTo(dots[j].x * width, dots[j].y * height);
-            context.strokeStyle = `rgba(100,255,218,${0.065 * (1 - d2 / 12000)})`;
-            context.lineWidth = 0.5;
-            context.stroke();
-          }
-        }
+    const cancelIdle = scheduleIdle(() => {
+      const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
+      if (!canvas) {
+        return;
       }
 
-      frameId = window.requestAnimationFrame(draw);
-    };
+      const context = canvas.getContext('2d');
+      if (!context) {
+        return;
+      }
 
-    frameId = window.requestAnimationFrame(draw);
+      const dpr = Math.min(window.devicePixelRatio || 1, isLowPowerDevice ? 1 : 1.25);
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      const dotsCount = isLowPowerDevice ? 24 : width < 960 ? 34 : 46;
+      const linkDistanceSquared = width < 960 ? 7800 : 11000;
+
+      const resize = () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      const dots = Array.from({ length: dotsCount }, () => ({
+        x: Math.random(),
+        y: Math.random(),
+        vx: (Math.random() - 0.5) * 0.00022,
+        vy: (Math.random() - 0.5) * 0.00022,
+        r: Math.random() * 1.3 + 0.4,
+        a: Math.random() * 0.28 + 0.07
+      }));
+
+      let frameId = 0;
+      let running = false;
+
+      const draw = () => {
+        if (!running) {
+          return;
+        }
+
+        context.clearRect(0, 0, width, height);
+
+        dots.forEach((dot) => {
+          dot.x = (dot.x + dot.vx + 1) % 1;
+          dot.y = (dot.y + dot.vy + 1) % 1;
+
+          context.beginPath();
+          context.arc(dot.x * width, dot.y * height, dot.r, 0, Math.PI * 2);
+          context.fillStyle = `rgba(100,255,218,${dot.a})`;
+          context.fill();
+        });
+
+        for (let i = 0; i < dots.length; i += 1) {
+          for (let j = i + 1; j < dots.length; j += 1) {
+            const dx = (dots[i].x - dots[j].x) * width;
+            const dy = (dots[i].y - dots[j].y) * height;
+            const d2 = dx * dx + dy * dy;
+
+            if (d2 < linkDistanceSquared) {
+              context.beginPath();
+              context.moveTo(dots[i].x * width, dots[i].y * height);
+              context.lineTo(dots[j].x * width, dots[j].y * height);
+              context.strokeStyle = `rgba(100,255,218,${0.065 * (1 - d2 / linkDistanceSquared)})`;
+              context.lineWidth = 0.5;
+              context.stroke();
+            }
+          }
+        }
+
+        frameId = window.requestAnimationFrame(draw);
+      };
+
+      const start = () => {
+        if (running) {
+          return;
+        }
+
+        running = true;
+        frameId = window.requestAnimationFrame(draw);
+      };
+
+      const stop = () => {
+        running = false;
+        window.cancelAnimationFrame(frameId);
+      };
+
+      const onVisibilityChange = () => {
+        if (document.hidden) {
+          stop();
+        } else {
+          start();
+        }
+      };
+
+      document.addEventListener('visibilitychange', onVisibilityChange);
+      onVisibilityChange();
+
+      cleanup = () => {
+        window.removeEventListener('resize', resize);
+        document.removeEventListener('visibilitychange', onVisibilityChange);
+        stop();
+      };
+    }, 1200);
 
     return () => {
-      window.removeEventListener('resize', resize);
-      window.cancelAnimationFrame(frameId);
+      cancelIdle();
+      cleanup?.();
     };
   }, []);
 

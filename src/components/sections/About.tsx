@@ -37,7 +37,16 @@ export const About = ({ data }: AboutProps) => (
 
       <div className="photo-wrap fade" style={{ transitionDelay: '.15s' }}>
         <div className="photo-box">
-          <img src={data.profileImage} alt={data.name} className="profile-image" />
+          <img
+            src={data.profileImage}
+            alt={data.name}
+            className="profile-image"
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
+            width={831}
+            height={960}
+          />
         </div>
       </div>
     </div>
