@@ -1244,10 +1244,6 @@ footer {
 /* ══════════════════════════════════════════════
        PROCESS / HOW I WORK SECTION
     ══════════════════════════════════════════════ */
-#process {
-  padding: 100px 50px;
-}
-
 .process-intro {
   font-family: var(--mono);
   font-size: 14px;
