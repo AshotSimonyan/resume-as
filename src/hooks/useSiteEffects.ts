@@ -40,28 +40,19 @@ export const useSiteEffects = ({
       return;
     }
 
-    let prevY = window.scrollY;
-    let hidden = false;
-    let scrolled = prevY > 50;
+    let scrolled = window.scrollY > 50;
     let rafId = 0;
     let ticking = false;
 
     const updateNavbar = () => {
       const y = window.scrollY;
-      const nextHidden = y > prevY && y > 100;
       const nextScrolled = y > 50;
-
-      if (nextHidden !== hidden) {
-        navbar.classList.toggle('nav-hidden', nextHidden);
-        hidden = nextHidden;
-      }
 
       if (nextScrolled !== scrolled) {
         navbar.classList.toggle('nav-scrolled', nextScrolled);
         scrolled = nextScrolled;
       }
 
-      prevY = y;
       ticking = false;
     };
 
