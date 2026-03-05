@@ -21,6 +21,7 @@
     "*.{js,cjs,mjs,json,css,md}": "prettier --write"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
